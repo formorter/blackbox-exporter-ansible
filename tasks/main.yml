@@ -1,0 +1,9 @@
+---
+- name: 'Deploy {{ blackbox_service_name }}'
+  become: yes
+  block:
+    - name: 'Install {{ blackbox_service_name }} config'
+      import_tasks: config.yml
+
+    - name: 'Install {{ blackbox_service_name }} service'
+      import_tasks: systemd.yml

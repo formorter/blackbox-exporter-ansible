@@ -1,0 +1,11 @@
+---
+- name: 'Create {{ blackbox_service_name }} config dir'
+  file: 
+    path: "{{ blackbox_config_path }}"
+    state: directory
+
+- name: 'Create {{ blackbox_service_name }} config file'
+  copy:
+    content: "{{ blackbox.config }}"
+    dest: "{{ blackbox_config_path }}/{{ blackbox_config_file }}"
+  notify: blackbox restart service

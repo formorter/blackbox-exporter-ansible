@@ -1,0 +1,24 @@
+[Unit]
+Description=blackbox exporter container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+SyslogIdentifier={{ blackbox_service_name }}
+ExecStartPre=-/usr/bin/docker rm {{ blackbox_service_name }}
+ExecStart=/usr/bin/docker run --rm \
+ -p {{ blackbox_port }}/tcp \
+ --net host \
+ -v {{ blackbox_config_path }}:/etc/blackbox_exporter \
+ --name {{ blackbox_service_name }} \
+ {{ blackbox_image }}:{{ blakcbox_image_version }} \
+ --config.file=/etc/blackbox_exporter/{{ blackbox_config_file }} \
+ --web.listen-address=:{{ blackbox_port }}
+ 
+
+
+ExecStop=/usr/bin/docker stop -t 10 {{ blackbox_service_name }}
+
+[Install]
+WantedBy=multi-user.target

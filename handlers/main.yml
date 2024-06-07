@@ -1,0 +1,7 @@
+---
+- name: 'blackbox restart service'
+  become: yes
+  systemd:
+    name: "{{ blackbox_service_name }}"
+    state: restarted
+    daemon_reload: yes

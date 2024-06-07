@@ -1,0 +1,7 @@
+---
+- name: 'Copy {{ blackbox_service_name }} service config'
+  template:
+    src: blackbox.service.j2
+    dest: "{{ blackbox_service_path }}/blackbox_exporter.service"
+  notify: blackbox restart service
+
