@@ -7,7 +7,7 @@ blackbox_config_path: /etc/blackbox_exporter
 blackbox_config_file: config.yml
 blackbox_service_path: /etc/systemd/system
 blackbox_port: 9117
-blackbox_image: infra.binary.alfabank.ru/bitnami/blackbox-exporter
+blackbox_image: bitnami/blackbox-exporter
 blakcbox_image_version: 0.24.0
 blackbox_proxy_protocol: http
 blackbox:
